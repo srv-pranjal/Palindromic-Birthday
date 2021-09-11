@@ -2,6 +2,7 @@ const birthday = document.querySelector("#bday");
 const formRef = document.querySelector("#form");
 const outputMessage = document.querySelector("#output");
 const daysInMonth = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+const loader = document.querySelector("#loader");
 const dateFormats = [
   "DD-MM-YYYY",
   "MM-DD-YYYY",
@@ -132,25 +133,33 @@ function getNearestPalindromicDate() {
 }
 function formSubmitHandler(e) {
   e.preventDefault();
+  loader.style.display = "block";
   if (birthday.value) {
-    let dateArray = birthday.value.split("-");
-    date.day = Number(dateArray[2]);
-    date.month = Number(dateArray[1]);
-    date.year = Number(dateArray[0]);
-    const [palindromeCheck, format] = isPalindromeForAnyFormat(date);
-    outputMessage.style.display = "block";
-    if (palindromeCheck) {
-      outputMessage.innerText = `Woahhhh!! Your birthday is Palindrome in ${format} format 🥳🥳`;
-    } else {
-      const [nearestPalindromicDate, nearestPalindromicDifference] =
-        getNearestPalindromicDate();
-      let nearestDate = "";
-      nearestDate += nearestPalindromicDate.day + "-";
-      nearestDate += nearestPalindromicDate.month + "-";
-      nearestDate += nearestPalindromicDate.year;
-      outputMessage.innerText = `Oopsss!! Your birthday is not Palindrome\nNearest Palindrome date is ${nearestDate} You missed by ${nearestPalindromicDifference} days`;
-    }
+    setTimeout(function () {
+      loader.style.display = "none";
+      let dateArray = birthday.value.split("-");
+      date.day = Number(dateArray[2]);
+      date.month = Number(dateArray[1]);
+      date.year = Number(dateArray[0]);
+      const [palindromeCheck, format] = isPalindromeForAnyFormat(date);
+      outputMessage.style.display = "block";
+      if (palindromeCheck) {
+        outputMessage.innerText = `Woahhhh!! Your birthday is Palindrome in ${format} format 🥳🥳`;
+      } else {
+        const [nearestPalindromicDate, nearestPalindromicDifference] =
+          getNearestPalindromicDate();
+        let nearestDate = "";
+        nearestDate += nearestPalindromicDate.day + "-";
+        nearestDate += nearestPalindromicDate.month + "-";
+        nearestDate += nearestPalindromicDate.year;
+        outputMessage.innerText = `Oopsss!! Your birthday is not Palindrome\nNearest Palindrome date is ${nearestDate} You missed by ${nearestPalindromicDifference} days`;
+      }
+    }, 1200);
   }
 }
 
 formRef.addEventListener("submit", formSubmitHandler);
+birthday.addEventListener(
+  "click",
+  () => (outputMessage.style.display = "none")
+);
