@@ -138,8 +138,9 @@ function formSubmitHandler(e) {
     date.month = Number(dateArray[1]);
     date.year = Number(dateArray[0]);
     const [palindromeCheck, format] = isPalindromeForAnyFormat(date);
+    outputMessage.style.display = "block";
     if (palindromeCheck) {
-      outputMessage.innerText = `Woahhhh!! Your birthday is Palindrome in ${format} format`;
+      outputMessage.innerText = `Woahhhh!! Your birthday is Palindrome in ${format} format 🥳🥳`;
     } else {
       const [nearestPalindromicDate, nearestPalindromicDifference] =
         getNearestPalindromicDate();
@@ -147,7 +148,7 @@ function formSubmitHandler(e) {
       nearestDate += nearestPalindromicDate.day + "-";
       nearestDate += nearestPalindromicDate.month + "-";
       nearestDate += nearestPalindromicDate.year;
-      outputMessage.innerText = `Oopsss!! It seems like your birthday is not Palindrome\nNearest Palindrome date is ${nearestDate}\nYou missed by ${nearestPalindromicDifference} days`;
+      outputMessage.innerText = `Oopsss!! Your birthday is not Palindrome\nNearest Palindrome date is ${nearestDate} You missed by ${nearestPalindromicDifference} days`;
     }
   }
 }

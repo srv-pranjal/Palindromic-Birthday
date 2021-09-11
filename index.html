@@ -5,14 +5,18 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Palindromic Birthday</title>
+    <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <h1>Is Your Birthday Palindrome?</h1>
-    <form id="form">
-      <input type="date" id="bday" required />
-      <button>Check Now</button>
-    </form>
-    <p id="output"></p>
+    <div class="container">
+      <h1>Is Your Birthday Palindrome?</h1>
+      <form id="form">
+        <label for="bday">Enter Your Birthday</label>
+        <input type="date" id="bday" required />
+        <button>Check Now</button>
+      </form>
+      <p id="output"></p>
+    </div>
     <script src="./app.js"></script>
   </body>
 </html>
